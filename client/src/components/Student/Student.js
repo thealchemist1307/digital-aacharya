@@ -6,7 +6,7 @@ import Dashboard  from './Dashboard';
 import Sidebar from './SideNav';
 import { Container , Col , Row } from 'react-bootstrap'
 import "../../css/tutor.css"
-import AddClass from "./AddClass"
+import SearchClass from "./SearchClass"
 import MyClass from "./MyClass"
 function Student() {
   return (
@@ -21,7 +21,9 @@ function Student() {
         </Col>
         <Col style={{marginRight:"50px",paddingTop:"50px"}}>
         
-          <Route path="/Student/" component={Dashboard} />
+          <Route exact path="/Student/" component={Dashboard} />
+          <Route exact path="/Student/SearchClass" component={SearchClass} />
+          <Route exact path="/Student/MyClass" component={MyClass} />
           
       
         </Col>

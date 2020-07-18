@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router, Route, Link, withRouter ,useLocation} from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, withRouter,useLocation } from "react-router-dom";
 
 const StyledSideNav = styled.div`   
     position: absolute;     /* Fixed Sidebar (stay in place on scroll and position relative to viewport) */
@@ -18,24 +18,24 @@ const StyledSideNav = styled.div`
 class SideNav extends React.Component {
     constructor(props) {
         super(props);
-        console.log("SideNav"+this.props.location)
+        console.log(this.props.location.location.pathname)
         this.state = {
-            activePath: this.props.location,
+            activePath: this.props.location.location.pathname,
             items: [
                 {
-                  path: '/Tutor/', /* path is used as id to check which NavItem is active basically */
+                  path: '/Student/', /* path is used as id to check which NavItem is active basically */
                   name: 'Dashboard',
                   css: 'fa fa-fw fa-home',
                   key: 1 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
                 },
                 {
-                  path: '/Tutor/AddClass',
-                  name: 'Add Class',
+                  path: '/Student/SearchClass',
+                  name: 'Search Class',
                   css: 'fa fa-fw fa-clock',
                   key: 2
                 },
                 {
-                  path: '/Tutor/MyClass',
+                  path: '/Student/MyClass',
                   name: 'My Class',
                   css: 'fas fa-hashtag',
                   key: 3
@@ -72,7 +72,7 @@ class SideNav extends React.Component {
     }
 }
 
-const RouterSideNav = withRouter(SideNav);
+const RouterSideNav = withRouter(props => <SideNav location={props}/>);
 
 const StyledNavItem = styled.div`
     height: 150px;
@@ -121,12 +121,15 @@ const NavIcon = styled.div`
 `;
 
 export default class Sidebar extends React.Component {
-    constructor(){
-        console.log("SideNav")
+    constructor(props){
+        super(props)
+        this.location=this.props.location
+        console.log(this.props.location)
     }
+    
     render() {
         return (
-            <RouterSideNav></RouterSideNav>
+            <RouterSideNav location={this.location}></RouterSideNav>
         );
     }
 }
