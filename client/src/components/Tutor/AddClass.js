@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Dashboard extends React.Component {
+class AddClass extends React.Component {
 
     constructor(props) {
         super(props);
@@ -12,7 +12,7 @@ class Dashboard extends React.Component {
     render() {
       return (
         <div style={{backgroundColor:"#dbdbdb",borderRadius:"25px",color:"black", height:"1000px",textAlign:"center"}}>
-        <h1 style={{color:"black",fontSize:"50px"}}>Dashboard</h1>
+        <h1 style={{color:"black",fontSize:"50px"}}>Add a Class</h1>
     </div>
   
       );
@@ -20,4 +20,4 @@ class Dashboard extends React.Component {
   }
   
   
-  export default Dashboard;
+  export default AddClass;

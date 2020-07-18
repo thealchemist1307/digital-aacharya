@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router, Route, Link, withRouter,useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, withRouter ,useLocation} from "react-router-dom";
 
 const StyledSideNav = styled.div`   
     position: absolute;     /* Fixed Sidebar (stay in place on scroll and position relative to viewport) */
@@ -18,9 +18,9 @@ const StyledSideNav = styled.div`
 class SideNav extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this.props.location.location.pathname)
+        console.log("SideNav"+this.props.location)
         this.state = {
-            activePath: this.props.location.location.pathname,
+            activePath: this.props.location,
             items: [
                 {
                   path: '/Tutor/', /* path is used as id to check which NavItem is active basically */
@@ -72,7 +72,7 @@ class SideNav extends React.Component {
     }
 }
 
-const RouterSideNav = withRouter(props => <SideNav location={props}/>);
+const RouterSideNav = withRouter(SideNav);
 
 const StyledNavItem = styled.div`
     height: 150px;
@@ -121,15 +121,12 @@ const NavIcon = styled.div`
 `;
 
 export default class Sidebar extends React.Component {
-    constructor(props){
-        super(props)
-        this.location=this.props.location
-        console.log(this.props.location)
+    constructor(){
+        console.log("SideNav")
     }
-    
     render() {
         return (
-            <RouterSideNav location={this.location}></RouterSideNav>
+            <RouterSideNav></RouterSideNav>
         );
     }
 }
