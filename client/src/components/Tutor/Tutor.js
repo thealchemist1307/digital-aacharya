@@ -4,15 +4,15 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { NavigationBar } from './NavigationBar';
 import { Dashboard } from './Dashboard';
 import Sidebar from './SideNav';
-
+import { Container , Col , Row } from 'react-bootstrap'
 function Tutor() {
   return (
     <React.Fragment>
       <Router>
         <NavigationBar />
-
+   
         <Sidebar />
-
+            
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route path="/about"  />

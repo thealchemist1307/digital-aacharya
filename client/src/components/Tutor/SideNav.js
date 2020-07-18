@@ -12,29 +12,30 @@ const StyledSideNav = styled.div`
     overflow-x: hidden;     /* Disable horizontal scroll */
     padding-top: 10px;
     align-content:end;
+    text-decoration:none;
 `;
 
 class SideNav extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            activePath: props.location.pathname,
+            activePath: "/Tutor/",
             items: [
                 {
-                  path: '/', /* path is used as id to check which NavItem is active basically */
-                  name: 'Home',
+                  path: '/Tutor/', /* path is used as id to check which NavItem is active basically */
+                  name: 'Dashboard',
                   css: 'fa fa-fw fa-home',
                   key: 1 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
                 },
                 {
-                  path: '/about',
-                  name: 'About',
+                  path: '/Tutor/AddClass',
+                  name: 'Add Class',
                   css: 'fa fa-fw fa-clock',
                   key: 2
                 },
                 {
-                  path: '/NoMatch',
-                  name: 'NoMatch',
+                  path: '/Tutor/MyClass',
+                  name: 'My Class',
                   css: 'fas fa-hashtag',
                   key: 3
                 },
@@ -76,11 +77,12 @@ const StyledNavItem = styled.div`
     width: 300px; /* width must be same size as NavBar to center */
      /* Aligns <a> inside of NavIcon div */
     margin-bottom: 0;   /* Puts space between NavItems */
-   
+    text-decoration:none;
     h1 {
           
-      color: ${(props) => props.active ? "white" : "#9FFFCB"};
-      background-color:${(props) => props.active ? "blue" : "black"};
+      color: ${(props) => props.active ? "black" : "white"};
+      background-color:${(props) => props.active ? "white" : "black"};
+      text-decoration:none;
       :hover {
           opacity: 0.7;
           text-decoration: none; /* Gets rid of underlining of icons */
