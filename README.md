@@ -1,4 +1,4 @@
-# bphc-unite
+# digital-aacharya
 
 # To run the project
 
