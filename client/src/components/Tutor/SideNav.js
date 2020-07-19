@@ -81,18 +81,21 @@ const StyledNavItem = styled.div`
     margin-bottom: 0;   /* Puts space between NavItems */
     text-decoration:none;
     text-decoration-line:none;
-    
+     padding-left:10px;
     h1 {
         text-align: center;
       color: ${(props) => props.active ? "black" : "white"};
-      background-color:${(props) => props.active ? "white" : "black"};
+      background-color:${(props) => props.active ? "orange" : "black"};
       text-decoration:none;
       text-decoration-line:none;
+      border-radius:10px;
+      margin-right:15px;
+      margin-left:15px;
       :hover {
           opacity: 0.5;
           text-decoration: none; /* Gets rid of underlining of icons */
           text-decoration-line:none;
-          background-color:white;
+          background-color:orange;
           color:black;
       }
 

@@ -1,11 +1,12 @@
 import React from 'react';
+import "../../css/tutor.css"
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch,useLocation } from "react-router-dom";
 import { NavigationBar } from './NavigationBar';
 import Dashboard  from './Dashboard';
 import Sidebar from './SideNav';
 import { Container , Col , Row } from 'react-bootstrap'
-import "../../css/tutor.css"
+
 import AddClass from "./AddClass"
 import MyClass from "./MyClass"
 function Tutor() {
