@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from "axios"
+import {CardGroup, CardColumns} from "react-bootstrap"
 import EnrolledClassCard from "./EnrolledClassCard"
 class EnrolledClass extends React.Component {
 
@@ -11,10 +12,20 @@ class EnrolledClass extends React.Component {
     }
     
     render() {
+      const getRequest={email:"test@g.com"}
+      const headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin':'*'
+      }
         axios
-      .get("http://localhost:3000/api/addclass/get", "test@g.com")
+      .get("http://localhost:3000/api/addclass/get",{
+        params: {
+          ID: 12345,
+          email:"test@g.com"
+        }},{headers:headers})
       .then(res => {
         this.setState({requests:res.data});
+        console.log(this.state.requests)
       })
       .catch(error => {
         console.log(error);
@@ -36,9 +47,11 @@ class EnrolledClass extends React.Component {
         
       });
       return (
-        <div >
+        <div style={{paddingLeft:"20px"}} >
         <h1 style={{color:"black",fontSize:"50px"}}>Enrolled Class</h1>
-      <div>{cabcards}</div>
+      <CardColumns style={{paddingTop:"50px"}}>
+        {cabcards}
+      </CardColumns>
     </div>
   
       );

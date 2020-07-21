@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Card,ListGroup,ListGroupItem} from "react-bootstrap"
 import axios from "axios";
 
 import "../../css/card.css";
@@ -22,51 +22,17 @@ class EnrolledClassCard extends React.Component {
   render() {
 
     return (
-      <div>
-        <div className="card2">
-          <header className="card-header" id="head4">
-            <p className="card-header-title" id="head4t">
-              {this.props.name}
-            </p>
-            <a href="#" className="card-header-icon" aria-label="more options">
-              <span className="icon">
-                <i className="fas fa-angle-down" aria-hidden="true"></i>
-              </span>
-            </a>
-          </header>
-          <div className="card-content contentcard">
-            <div className="content">
-              <div class="bar2">
-                <div className="emptybar2"></div>
-                <div className="filledbar2"></div>
-              </div>
-              <b>Subject : </b>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.props.subject}
-              <br /><b>Fees : </b>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.props.fees}
-              <br />
-              <b>Time : </b>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.props.time}
-              <br />
-            </div>
-          </div>
-
-          <footer className="card-footer footcard">
-            <a
-              href="#"
-              className="card-footer-item"
-              id="lin1"
-              onClick={this.onSend}
-            >
-              Delete
-            </a>
-            {/* <a href="#" class="card-footer-item">Edit</a>
-                <a href="#" class="card-footer-item">Delete</a> */}
-          </footer>
-        </div>
-        <br />
+        <Card style={{ width: '300px',borderRadius:"10px" }}>
+    <Card.Header style={{fontSize:"30px"}}>{this.props.subject}</Card.Header>
+  <ListGroup style={{textAlign:"start",fontSize:"20px"}} variant="flush">
+    <ListGroup.Item style={{borderBottomWidth:"4px"}}>Subject : {this.props.subject}</ListGroup.Item>
+    <ListGroup.Item style={{borderBottomWidth:"4px"}}>Fees : {this.props.fees} </ListGroup.Item>
+    <ListGroup.Item style={{borderBottomWidth:"4px"}}>Time : {this.props.time} </ListGroup.Item>
+    <ListGroup.Item >Status : {this.props.status}</ListGroup.Item>
+  </ListGroup>
+  <Card.Footer  style={{fontSize:"30px"}}>Delete</Card.Footer>
+</Card>
        
-      </div>
     );
   }
 }

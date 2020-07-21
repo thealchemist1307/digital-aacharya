@@ -2,10 +2,11 @@ const express =require('express');
 const router =express.Router();
 const Post =require('../models/Add_Class');
 router.route('/get').get((req,res)=>{
-    const email=req.body.email
-    Post.find({"email":email })
+    const email=req.query.email
+    Post.find({"email":email})
         .then((data)=>{
             res.json(data);
+            
         })
         .catch((err)=>{
             console.log(err);
