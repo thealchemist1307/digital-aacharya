@@ -1,8 +1,8 @@
 import React from 'react';
-import { Container , Col , Row } from 'react-bootstrap'
+
 import Select from "react-select";
 import TimePicker from 'react-times';
- 
+ import axios from "axios"
 // use material theme
 import 'react-times/css/material/default.css';
 class AddClassForm extends React.Component {
@@ -11,20 +11,25 @@ class AddClassForm extends React.Component {
     { value: 'strawberry', label: 'Strawberry' },
     { value: 'vanilla', label: 'Vanilla' }
   ]
-  
+
     constructor(props) {
         super(props);
         this.state = {
-            time:"12:00pm"
+            time:"12:00pm",
+            subject:"",
+            fees:""
         };
-        
+        this.fromSelect = this.fromSelect.bind(this);
+        this.handleFees=this.handleFees.bind(this)
+        this.handleSubmit=this.handleSubmit.bind(this)
     }
     customStyles = {
       container: provided => ({
         ...provided,
         display: "inline-block",
-        width: "250px",
+        width: "300px",
         minHeight: "1px",
+        height:"50px",
         textAlign: "left",
         border: "none"
       }),
@@ -33,7 +38,7 @@ class AddClassForm extends React.Component {
         border: "2px solid #757575",
         borderRadius: "10px",
         minHeight: "1px",
-        height: "40px",
+        height: "50px",
       }),
       input: provided => ({
         ...provided,
@@ -79,37 +84,85 @@ class AddClassForm extends React.Component {
     };
     onTimeChange(options) {
       
-      this.setState({time:options.hour + options.minute+options.meridiem})
-      console.log(this.state.time)
+      this.setState({time:options.hour +":"+ options.minute+" "+options.meridiem})
+      
+    }
+    handleFees(event){
+      
+      this.setState({fees:event.target.value})
+      
+    }
+
+    fromSelect(event) {
+      
+      this.setState({subject:event.label})
+      
+    }
+    handleSubmit(){
+      const newRequest={
+        name:"",
+        email:"test@g.com",
+        subject:this.state.subject,
+        fees:this.state.fees,
+        time:this.state.time,
+        status:"pending"
+      }
+      console.log(newRequest)
+      const headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin':'*'
+      }
+      axios
+      .post("http://localhost:3000/api/addclass/post", newRequest,{headers:headers})
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(error => {
+        console.log(error);
+        console.log("Add Class Error");
+      });
     }
     render() {
       return (
-        <div >
+        <div  >
           
-        <form onSubmit={this.handleSubmit}>
-        <div>
+        <form >
+        <div style={{paddingTop:"20px",paddingBottom:"20px",textAlign:'start'}}>
         <label style={styles.subject}>Subject :</label>
-        <Select styles={this.customStyles} options={this.options}
+        <Select onChange={this.fromSelect} styles={this.customStyles} options={this.options}
               isSearchable={true}
             />
          
          </div>
-        <div>
+        <div  style={{paddingTop:"20px",paddingBottom:"20px",textAlign:'start'}}>
         <label style={styles.fees}>
-          Fees    :</label>
-          <input type="text" style={{paddingRight:"20px",width:'250px',height:"40px"}} value={this.state.value} onChange={this.handleChange} />
+          
+          Fees :</label>
+          <input type="text" onChange={this.handleFees} style={{paddingLeft:"20px",width:'300px',height:"45px",borderRadius:"10px"}} value={this.state.fees}  />
         
         </div>
-        <div style={{width:"300px",}}><label>Class Time :</label> <TimePicker
+        
+        <div style={{paddingTop:"20px",paddingBottom:"20px",width:"500px",}}>
+          <table>
+          <tr>
+          <td>
+          <label style={{fontSize:"30px"}}>Class Time :</label> 
+          </td>
+          <td style={{width:"300px",height:"35px"}}>
+          <TimePicker
    
     onTimeChange={this.onTimeChange.bind(this)}    
     customStyles
     time={this.state.time} // initial time, default current time
     theme="material"
     timeMode="12" // use 24 or 12 hours mode, default 24
-      />
+      /> </td>
+      </tr>
+      </table>
         </div>
-        <input type="submit" value="Submit" />
+        <div style={{paddingTop:"20px",paddingBottom:"20px"}}>
+        <button style={{fontSize:"40px"}} onClick={this.handleSubmit} type="button" >Add Class</button>
+        </div>
       </form>
     </div>
   
@@ -118,10 +171,10 @@ class AddClassForm extends React.Component {
   }
   
   const styles={
-      subject:{paddingRight:"10px",
+      subject:{paddingRight:"50px",
             fontSize:"30px"},
       
-      fees:{paddingRight:"10px",
+      fees:{paddingRight:"85px",
             fontSize:"30px",
               },
     

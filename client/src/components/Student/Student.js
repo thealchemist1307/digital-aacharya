@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import { NavigationBar } from './NavigationBar';
 import Dashboard  from './Dashboard';
 import Sidebar from './SideNav';

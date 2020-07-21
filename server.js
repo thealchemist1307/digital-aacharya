@@ -9,6 +9,9 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const expressSession = require("express-session");
+
+const addClass=require("./services/addClass")
+
 mongoose.set("useFindAndModify", false);
 mongoose.connect(
     keys.mongoURI,
@@ -45,6 +48,10 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+/*API Calls */
+app.use("/api/addclass",addClass)
+
 
 const port = process.env.PORT || 5000;
 require("./routes/authRoutes")(app);
