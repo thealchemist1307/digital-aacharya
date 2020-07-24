@@ -7,6 +7,8 @@ import TutorLogin from "./components/TutorLogin"
 import Tutor from "./components/Tutor/Tutor"
 import 'bootstrap/dist/css/bootstrap.css';
 import Student from "./components/Student/Student"
+import Admin from "./components/Admin/Admin"
+import AdminLogin from "./components/Admin/AdminLogin"
 function App() {
   return (
     <Router>
@@ -15,7 +17,8 @@ function App() {
             <Route exact path="/StudentLogin" component={StudentLogin}></Route>
             <Route path="/Tutor/" component={Tutor}></Route>
             <Route path="/Student/" component={Student}></Route>
-            
+            <Route exact path="/Admin/login/" component={AdminLogin} />
+          <Route exact path="/Admin/tr" component={Admin} />
         </Router>
   );
 }

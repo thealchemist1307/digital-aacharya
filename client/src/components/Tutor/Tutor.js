@@ -6,7 +6,6 @@ import { NavigationBar } from './NavigationBar';
 import Dashboard  from './Dashboard';
 import Sidebar from './SideNav';
 import TutorClassPage from "../Classes/TutorClassPage"
-
 import { Container , Col , Row } from 'react-bootstrap'
 
 import AddClass from "./AddClass"
@@ -30,7 +29,7 @@ function Tutor() {
           <Route exact path="/Tutor/AddClass/" component={AddClass} />
           <Route exact path="/Tutor/MyClass/" component={MyClass} />
           <Route path="/Tutor/Class/:id" component={TutorClassPage}></Route>
-      
+          
         </Col>
         </Row>
         </Container>

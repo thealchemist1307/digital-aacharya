@@ -16,6 +16,7 @@ const searchClass=require("./services/searchClass")
 const getCounter=require("./services/getCounter")
 const classPage = require("./services/classPage")
 const createSession = require("./services/createSession")
+const tutorRequests =require("./services/tutorRequests")
 /* */
 
 mongoose.set("useFindAndModify", false);
@@ -61,6 +62,7 @@ app.use("/api/searchclass",searchClass)
 app.use("/api/getcounter",getCounter)
 app.use("/api/classpage",classPage)
 app.use("/api/createsession",createSession)
+app.use("/api/tr",tutorRequests)
 /* */
 
 
