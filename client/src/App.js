@@ -15,6 +15,7 @@ function App() {
             <Route exact path="/StudentLogin" component={StudentLogin}></Route>
             <Route path="/Tutor/" component={Tutor}></Route>
             <Route path="/Student/" component={Student}></Route>
+            
         </Router>
   );
 }

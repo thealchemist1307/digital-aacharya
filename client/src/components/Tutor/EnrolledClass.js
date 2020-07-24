@@ -9,28 +9,29 @@ class EnrolledClass extends React.Component {
         this.state = {
             requests:[]
         };
+        const headers = {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin':'*'
+        }
+          axios
+        .get("http://localhost:3000/api/addclass/get",{
+          params: {
+            ID: 12345,
+            email:"test@g.com"
+          }},{headers:headers})
+        .then(res => {
+          this.setState({requests:res.data});
+         console.log(this.state.requests)
+        })
+        .catch(error => {
+          console.log(error);
+          console.log("Add Class Error");
+        });
     }
     
     render() {
-      const getRequest={email:"test@g.com"}
-      const headers = {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin':'*'
-      }
-        axios
-      .get("http://localhost:3000/api/addclass/get",{
-        params: {
-          ID: 12345,
-          email:"test@g.com"
-        }},{headers:headers})
-      .then(res => {
-        this.setState({requests:res.data});
-        console.log(this.state.requests)
-      })
-      .catch(error => {
-        console.log(error);
-        console.log("Add Class Error");
-      });
+
+      
       const cabcards = this.state.requests.map((item, index) => {
        
        
@@ -42,6 +43,7 @@ class EnrolledClass extends React.Component {
             time={item.time}
             fees={item.fees}
             status={item.status}
+            id={item.id}
           >/</EnrolledClassCard>
         );
         

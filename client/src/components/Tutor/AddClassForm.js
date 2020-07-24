@@ -17,12 +17,15 @@ class AddClassForm extends React.Component {
         this.state = {
             time:"12:00pm",
             subject:"",
-            fees:""
+            fees:"",
+            id:0,
         };
         this.fromSelect = this.fromSelect.bind(this);
         this.handleFees=this.handleFees.bind(this)
         this.handleSubmit=this.handleSubmit.bind(this)
-    }
+      
+        
+      }
     customStyles = {
       container: provided => ({
         ...provided,
@@ -100,6 +103,7 @@ class AddClassForm extends React.Component {
     }
     handleSubmit(){
       const newRequest={
+        id:this.state.id,
         name:"",
         email:"test@g.com",
         subject:this.state.subject,
@@ -123,6 +127,18 @@ class AddClassForm extends React.Component {
       });
     }
     render() {
+      const headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin':'*'
+      }
+        axios
+      .get("http://localhost:3000/api/getcounter/get",{
+        params: {
+          field:"Class"
+        }},{headers:headers})
+      .then(res => {
+        this.setState({id:res.data[0].Counter});
+      })
       return (
         <div  >
           

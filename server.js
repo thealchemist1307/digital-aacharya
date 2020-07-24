@@ -13,6 +13,10 @@ const expressSession = require("express-session");
 /*Services */
 const addClass=require("./services/addClass")
 const searchClass=require("./services/searchClass")
+const getCounter=require("./services/getCounter")
+const classPage = require("./services/classPage")
+const createSession = require("./services/createSession")
+/* */
 
 mongoose.set("useFindAndModify", false);
 mongoose.connect(
@@ -54,7 +58,9 @@ app.use(passport.session());
 /*API Calls */
 app.use("/api/addclass",addClass)
 app.use("/api/searchclass",searchClass)
-
+app.use("/api/getcounter",getCounter)
+app.use("/api/classpage",classPage)
+app.use("/api/createsession",createSession)
 /* */
 
 

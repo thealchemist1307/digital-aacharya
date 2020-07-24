@@ -1,11 +1,13 @@
 import React from "react";
 import {Card,ListGroup,ListGroupItem} from "react-bootstrap"
 import axios from "axios";
+import {Link} from "react-router-dom"
+
 
 import "../../css/card.css";
 
 
-class EnrolledClassCard extends React.Component {
+class MyClassCard extends React.Component {
   constructor(props) {
     super(props);
 
@@ -31,7 +33,7 @@ class EnrolledClassCard extends React.Component {
     <ListGroup.Item style={{borderBottomWidth:"4px"}}>Time : {this.props.time} </ListGroup.Item>
     <ListGroup.Item >Status : {this.props.status}</ListGroup.Item>
   </ListGroup>
-  <Card.Footer  style={{fontSize:"30px"}}>Delete</Card.Footer>
+  <Card.Footer  style={{fontSize:"30px"}} ><Link to={"/Tutor/Class/"+this.props.id} >Go To My Class</Link></Card.Footer>
 </Card>
        
     );
@@ -39,4 +41,4 @@ class EnrolledClassCard extends React.Component {
 }
 
 
-export default (EnrolledClassCard);
+export default (MyClassCard);
