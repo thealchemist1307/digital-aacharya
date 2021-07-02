@@ -11,21 +11,9 @@ const addClassSchema = new Schema({
   name: {
     type: String
   },
-  email: {
-    type: String
-  },
-  status: {
-    type: String
-  },
   subject: {
-    type: String
+    type: Array
   },
-  fees: {
-    type: String
-  },
-  classtime: {
-    type: String
-  }
 });
 
-module.exports = Post = mongoose.model("addClass", addClassSchema);
+module.exports = Course = mongoose.model("Course", addClassSchema);

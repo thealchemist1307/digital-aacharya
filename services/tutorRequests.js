@@ -1,6 +1,6 @@
 const express =require('express');
 const router =express.Router();
-const Post = require("../models/Add_Class")
+const Post = require("../models/Course")
 router.route('/get').get((req,res)=>{
     Post.find({"status":"pending"})
         .then((data)=>{

@@ -5,6 +5,8 @@ import TimePicker from 'react-times';
  import axios from "axios"
 // use material theme
 import 'react-times/css/material/default.css';
+import { Container , Col , Row } from 'react-bootstrap'
+
 class AddClassForm extends React.Component {
   options = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -102,86 +104,90 @@ class AddClassForm extends React.Component {
       
     }
     handleSubmit(){
-      const newRequest={
-        id:this.state.id,
-        name:"",
-        email:"test@g.com",
-        subject:this.state.subject,
-        fees:this.state.fees,
-        time:this.state.time,
-        status:"pending"
-      }
-      console.log(newRequest)
-      const headers = {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin':'*'
-      }
-      axios
-      .post("http://localhost:3000/api/addclass/post", newRequest,{headers:headers})
-      .then(res => {
-        console.log(res.data);
+
+    }
+    renderFac=()=>{
+      const facultyMap=this.props.facultyMap
+      const fac=Array.from(facultyMap.keys())
+      var data =new Array()
+      for(var i=0;i<fac.length;i++)
+      {   var tt=[[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]
+          var temp=facultyMap.get(fac[i])
+          for(var l=0;l<7;l++)
+          {
+            for(var k=0;k<5;k++)
+            {
+              if(temp.has((k).toString()+(l).toString()))
+              {
+                tt[k][l]=temp.get((k).toString()+(l).toString()).sub
+              }
+            }
+          }
+          data.push(tt)
+        }
+        return(
+          data.map((it,val)=>{
+            return(
+              <Container key={val} style={{borderWidth:"2px",borderStyle:'solid',borderColor:'black'}}>
+             { it.map((item,index)=>{
+              return(
+                <Row key={index}>
+                  {item.map((value,ind)=>{
+                    return(
+                      <Col key={ind}>
+                      <h7>
+                      {value}
+                      </h7>
+                      </Col>
+                    )
+                  })}
+                </Row>
+              )
+            })}
+            </Container>
+            
+            )
+    
+    
+          })
+          )
+    }
+    renderTT=()=>{
+
+      const data=this.props.TT[0]
+      console.log(data)
+      return(
+      this.props.TT.map((it,val)=>{
+        return(
+          <Container key={val} style={{borderWidth:"2px",borderStyle:'solid',borderColor:'black'}}>
+         { it.map((item,index)=>{
+          return(
+            <Row key={index}>
+              {item.map((value,ind)=>{
+                return(
+                  <Col key={ind}>
+                  <h5>
+                  {value}
+                  </h5>
+                  </Col>
+                )
+              })}
+            </Row>
+          )
+        })}
+        </Container>
+        
+        )
+
+
       })
-      .catch(error => {
-        console.log(error);
-        console.log("Add Class Error");
-      });
+      )
     }
     render() {
-      const headers = {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin':'*'
-      }
-        axios
-      .get("http://localhost:3000/api/getcounter/get",{
-        params: {
-          field:"Class"
-        }},{headers:headers})
-      .then(res => {
-        this.setState({id:res.data[0].Counter});
-      })
       return (
-        <div  >
-          
-        <form >
-        <div style={{paddingTop:"20px",paddingBottom:"20px",textAlign:'start'}}>
-        <label style={styles.subject}>Subject :</label>
-        <Select onChange={this.fromSelect} styles={this.customStyles} options={this.options}
-              isSearchable={true}
-            />
-         
-         </div>
-        <div  style={{paddingTop:"20px",paddingBottom:"20px",textAlign:'start'}}>
-        <label style={styles.fees}>
-          
-          Fees :</label>
-          <input type="text" onChange={this.handleFees} style={{paddingLeft:"20px",width:'300px',height:"45px",borderRadius:"10px"}} value={this.state.fees}  />
-        
+        <div style={{height:"100%",overflowY:'scroll'}}>
+        {this.renderFac()}
         </div>
-        
-        <div style={{paddingTop:"20px",paddingBottom:"20px",width:"500px",}}>
-          <table>
-          <tr>
-          <td>
-          <label style={{fontSize:"30px"}}>Class Time :</label> 
-          </td>
-          <td style={{width:"300px",height:"35px"}}>
-          <TimePicker
-   
-    onTimeChange={this.onTimeChange.bind(this)}    
-    customStyles
-    time={this.state.time} // initial time, default current time
-    theme="material"
-    timeMode="12" // use 24 or 12 hours mode, default 24
-      /> </td>
-      </tr>
-      </table>
-        </div>
-        <div style={{paddingTop:"20px",paddingBottom:"20px"}}>
-        <button style={{fontSize:"40px"}} onClick={this.handleSubmit} type="button" >Add Class</button>
-        </div>
-      </form>
-    </div>
-  
       );
     }
   }

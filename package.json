@@ -27,16 +27,11 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
-    "googleapis": "^39.2.0",
+    "googleapis": "^80.0.0",
     "mongoose": "^5.8.11",
     "nodemon": "^2.0.4",
     "opentok": "^2.10.0",
     "passport": "^0.4.1",
-    "passport-google-oauth20": "^2.0.0",
-    "react-alert": "^7.0.2",
-    "react-datepicker": "^2.12.1",
-    "react-router-dom": "^5.2.0",
-    "styled-components": "^5.1.1"
-  },
-  "devDependencies": {}
+    "passport-google-oauth20": "^2.0.0"
+  }
 }

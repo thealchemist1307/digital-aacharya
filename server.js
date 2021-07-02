@@ -16,7 +16,8 @@ const searchClass=require("./services/searchClass")
 const getCounter=require("./services/getCounter")
 const classPage = require("./services/classPage")
 const createSession = require("./services/createSession")
-const tutorRequests =require("./services/tutorRequests")
+const tutorRequests =require("./services/tutorRequests");
+const populate  = require("./services/populate");
 /* */
 
 mongoose.set("useFindAndModify", false);
@@ -46,6 +47,8 @@ app.use(cors());
 app.use(cookieParser("foo"));
 app.use(
     expressSession({
+        resave: true,
+        saveUninitialized: true,
         secret: "foo",
         cookie: {
             expires: false,
@@ -63,6 +66,7 @@ app.use("/api/getcounter",getCounter)
 app.use("/api/classpage",classPage)
 app.use("/api/createsession",createSession)
 app.use("/api/tr",tutorRequests)
+app.use("/api/populate",populate)
 /* */
 
 

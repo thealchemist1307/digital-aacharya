@@ -5,7 +5,7 @@ import axios from "axios";
 import "../../css/card.css";
 
 
-class TRCard extends React.Component {
+class EnrolledClassCard extends React.Component {
   constructor(props) {
     super(props);
 
@@ -39,4 +39,4 @@ class TRCard extends React.Component {
 }
 
 
-export default (TRCard);
+export default (EnrolledClassCard);

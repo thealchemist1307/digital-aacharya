@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link, withRouter,useLocation } from "react-router-dom";
 
 const StyledSideNav = styled.div`   
-    position: absolute;     /* Fixed Sidebar (stay in place on scroll and position relative to viewport) */
+    position: absolute; 
+   /* Fixed Sidebar (stay in place on scroll and position relative to viewport) */
     height: 100%;
-    width: 300px;     /* Set the width of the sidebar */
+    width: 100%;     /* Set the width of the sidebar */
     z-index: 1;      /* Stay on top of everything */
       /* Stay at the top */
     background-color: black; /* Black */
@@ -13,6 +14,9 @@ const StyledSideNav = styled.div`
     padding-top: 20px;
     align-content:end;
     text-decoration-line:none;
+    margin-left:-15px;
+    padding-right:5px;
+    padding-left:5px;
 `;
 
 class SideNav extends React.Component {
@@ -23,19 +27,19 @@ class SideNav extends React.Component {
             activePath: this.props.location.location.pathname,
             items: [
                 {
-                  path: '/Tutor/', /* path is used as id to check which NavItem is active basically */
+                  path: '/', /* path is used as id to check which NavItem is active basically */
                   name: 'Dashboard',
                   css: 'fa fa-fw fa-home',
                   key: 1 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
                 },
                 {
-                  path: '/Tutor/AddClass',
+                  path: '/AddClass',
                   name: 'Add Class',
                   css: 'fa fa-fw fa-clock',
                   key: 2
                 },
                 {
-                  path: '/Tutor/MyClass',
+                  path: '/MyClass',
                   name: 'My Class',
                   css: 'fas fa-hashtag',
                   key: 3
@@ -51,7 +55,7 @@ class SideNav extends React.Component {
     render() {
         const { items, activePath } = this.state;
         return(
-            <StyledSideNav>
+            <StyledSideNav style={{}}>
                 {
                     items.map((item) => {
                         return (
@@ -76,12 +80,11 @@ const RouterSideNav = withRouter(props => <SideNav location={props}/>);
 
 const StyledNavItem = styled.div`
     height: 150px;
-    width: 300px; /* width must be same size as NavBar to center */
+    width: 100%; /* width must be same size as NavBar to center */
      /* Aligns <a> inside of NavIcon div */
     margin-bottom: 0;   /* Puts space between NavItems */
     text-decoration:none;
     text-decoration-line:none;
-     padding-left:10px;
     h1 {
         text-align: center;
       color: ${(props) => props.active ? "black" : "white"};
@@ -89,8 +92,6 @@ const StyledNavItem = styled.div`
       text-decoration:none;
       text-decoration-line:none;
       border-radius:10px;
-      margin-right:15px;
-      margin-left:15px;
       :hover {
           opacity: 0.5;
           text-decoration: none; /* Gets rid of underlining of icons */
